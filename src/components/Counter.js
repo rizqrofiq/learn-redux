@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { counterActions } from "../store";
 import classes from "./Counter.module.css";
 
 /**
@@ -14,28 +15,28 @@ const Counter = () => {
    * useSelector dapat digunakan untuk mengambil beberapa data spesifik
    * dari sebuah state
    */
-  const counter = useSelector((state) => state.counter);
-  const showCounter = useSelector((state) => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter);
+  const showCounter = useSelector((state) => state.counter.showCounter);
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    dispatch({ type: "increment" });
+    dispatch(counterActions.increment());
   };
 
   const handleIncrease = (amount) => {
-    dispatch({ type: "increase", amount });
+    dispatch(counterActions.increase(amount));
   };
 
   const handleDecrement = () => {
-    dispatch({ type: "decrement" });
+    dispatch(counterActions.decrement());
   };
 
   const handleDecrease = (amount) => {
-    dispatch({ type: "decrease", amount });
+    dispatch(counterActions.decrease(amount));
   };
 
   const toggleCounterHandler = () => {
-    dispatch({ type: "toggle" });
+    dispatch(counterActions.toggleCounter());
   };
 
   return (
